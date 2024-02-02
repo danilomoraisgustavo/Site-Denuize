@@ -83,7 +83,6 @@ app.post('/processar-matricula', async (req, res) => {
         sobrenome,
         data_nascimento,
         cpf,
-        nome_responsavel,
         email,
         whatsapp,
         genero,
@@ -98,7 +97,11 @@ app.post('/processar-matricula', async (req, res) => {
         experiencia_danca,
         objetivos,
         preferencias_aula,
-        informacoes_medicas
+        informacoes_medicas,
+        nome_responsavel,
+        cpfResponsavel,
+        emailResponsavel,
+        whatsappResponsavel
     } = req.body;
 
     try {
@@ -111,16 +114,15 @@ app.post('/processar-matricula', async (req, res) => {
         // Inserir dados pessoais
         const queryDadosPessoais = `
             INSERT INTO dados_pessoais 
-            (primeiro_nome, sobrenome, data_nascimento, cpf, nome_responsavel, email, whatsapp, genero, logradouro, numero, bairro, complemento, cidade, estado, cep)
+            (primeiro_nome, sobrenome, data_nascimento, cpf, email, whatsapp, genero, logradouro, numero, bairro, complemento, cidade, estado, cep)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
             RETURNING id;`;
-        
+
         const valuesDadosPessoais = [
             primeiro_nome,
             sobrenome,
             data_nascimento,
             cpf,
-            nome_responsavel,
             email,
             whatsapp,
             genero,
@@ -143,7 +145,23 @@ app.post('/processar-matricula', async (req, res) => {
             numeroMatricula = gerarNumeroMatricula();
             unico = await verificarNumeroMatriculaUnico(client, numeroMatricula);
         }
+        // Inserir dados do responsável se existirem
+        if (nome_responsavel && cpfResponsavel && emailResponsavel && whatsappResponsavel) {
+            const queryDadosResponsavel = `
+        INSERT INTO dados_responsavel
+        (id_dados_pessoais, nome, cpf, email, whatsapp)
+        VALUES ($1, $2, $3, $4, $5);`;
 
+            const valuesDadosResponsavel = [
+                idDadosPessoais,
+                nome_responsavel,
+                cpfResponsavel,
+                emailResponsavel,
+                whatsappResponsavel
+            ];
+
+            await client.query(queryDadosResponsavel, valuesDadosResponsavel);
+        }
         // Inserir detalhes do curso com número de matrícula
         const queryDetalhesCurso = `
             INSERT INTO detalhes_curso 
