@@ -494,55 +494,6 @@
                 document.getElementById(`step${currentStep}`).style.display = 'block';
             }
         }
-        function validateStep(step) {
-            if (step === 1) {
-                // Validar os campos na primeira etapa (Dados Pessoais)
-                const primeiroNome = document.getElementById('primeiro_nome').value.trim();
-                const sobrenome = document.getElementById('sobrenome').value.trim();
-                const dataNascimento = document.getElementById('data_nascimento').value;
-                const cpf = document.getElementById('cpf').value.trim();
-                const nomeResponsavel = document.getElementById('nome_responsavel').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const whatsapp = document.getElementById('whatsapp').value.trim();
-                const genero = document.getElementById('genero').value;
-
-                if (!primeiroNome || !sobrenome || !dataNascimento || !cpf || !nomeResponsavel || !email || !whatsapp || !genero) {
-                    alert('Por favor, preencha todos os campos obrigatórios.');
-                    return false;
-                }
-
-                // Validar formato de e-mail
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    alert('Por favor, insira um endereço de e-mail válido.');
-                    return false;
-                }
-
-                // Validar formato de CPF
-                const cpfRegex = /^\d{11}$/;
-                if (!cpfRegex.test(cpf)) {
-                    alert('Por favor, insira um CPF válido (apenas números).');
-                    return false;
-                }
-
-                return true;
-            } else if (step === 2) {
-                // Adicione lógica de validação para a segunda etapa se necessário
-                const cursoEscolhido = document.getElementById('curso_escolhido').value;
-                const experienciaDanca = document.getElementById('experiencia_danca').value;
-                const objetivos = document.getElementById('objetivos').value;
-                const preferenciasAula = document.getElementById('preferencias_aula').value;
-
-                if (!cursoEscolhido || !experienciaDanca || !objetivos || !preferenciasAula) {
-                    alert('Por favor, preencha todos os campos obrigatórios na segunda etapa.');
-                    return false;
-                }
-
-                return true;
-            }
-
-            return true; // Se não houver etapa específica, retorne true
-        }
         // Seção de confirmação atualizada (step3)
         function updateConfirmation() {
             // Dados Pessoais
