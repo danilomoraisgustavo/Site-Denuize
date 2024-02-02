@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://fonts.cdnfonts.com/css/amarillo" rel="stylesheet">
+    <title>Matrículas</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/img/favicon.png" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+  <link href="/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+            <h1 class="logo me-auto" class="logo"><a href="index.html">Denuize Teixeira</a></h1>
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="about.html">Sobre Nós</a></li>
+                    <li><a href="courses.html">Cursos</a></li>
+                    <li><a href="trainers.html">Professores</a></li>
+                    <li><a href="events.html">Eventos</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+
+            <a href="login.html" class="get-started-btn">Area do Aluno</a>
+
+
+        </div>
+    </header><!-- End Header -->
+
+    <main id="main">
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="container">
+                <h2>Matrícula</h2>
+                <p>Preencha o formulário abaixo para se matricular em nossos cursos de dança.</p>
+            </div>
+        </div><!-- End Breadcrumbs -->
+        <div id="notification"
+            style="display: none; margin-bottom: 20px; padding: 10px; border-radius: 5px; text-align: center;">
+            <!-- A mensagem de notificação será inserida aqui -->
+        </div>
+        <!-- ======= Matrícula Section ======= -->
+        <section id="matricula" class="matricula">
+            <div class="container">
+                <form action="/processar-matricula" method="post" role="form" class="php-email-form">
+
+                    <div id="step1">
+                        <h4>Dados Pessoais</h4><br>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="primeiro_nome">Primeiro Nome</label>
+                                    <input type="text" name="primeiro_nome" class="form-control" id="primeiro_nome"
+                                        placeholder="Primeiro Nome" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="sobrenome">Sobrenome</label>
+                                    <input type="text" name="sobrenome" class="form-control" id="sobrenome"
+                                        placeholder="Sobrenome" required>
+                                </div>
+                            </div>
+                        </div><br>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="data_nascimento">Data de Nascimento</label>
+                                    <input type="date" name="data_nascimento" class="form-control" id="data_nascimento"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="cpf">CPF</label>
+                                    <input type="text" name="cpf" class="form-control" id="cpf" placeholder="CPF"
+                                        required>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="cpf">Seu melhor email</label>
+                                    <input type="text" name="email" class="form-control" id="email" placeholder="E-mail"
+                                        required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="cpf">Whatsapp</label>
+                                    <input type="text" name="whatsapp" class="form-control" id="whatsapp"
+                                        placeholder="Seu número whatsapp" required>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="form-group col-md-2">
+                            <select name="genero" id="genero" class="form-control" required>
+                                <option value="">Gênero Biológico</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="masculino">Masculino</option>
+                            </select>
+                        </div><br>
+                        <div id="dados_responsavel" style="display: none;">
+                            <h4>Dados do Responsavel</h4><br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="data_nascimento">Nome do Responsavel</label>
+                                        <input type="text" name="nome_responsavel" class="form-control"
+                                            id="nome_responsavel" placeholder="Nome do Responsável (se menor de idade)"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="cpf">CPF</label>
+                                        <input type="text" name="cpf" class="form-control" id="cpf" placeholder="CPF"
+                                            required>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="cpf">Seu melhor email</label>
+                                        <input type="text" name="email" class="form-control" id="email"
+                                            placeholder="E-mail" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="cpf">Whatsapp</label>
+                                        <input type="text" name="whatsapp" class="form-control" id="whatsapp"
+                                            placeholder="Seu número whatsapp" required>
+                                    </div>
+                                </div>
+                            </div><br>
+                        </div>
+                        <h4>Endereço</h4><br>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="data_nascimento">Logradouro</label>
+                                    <input type="text" name="logradouro" class="form-control" id="logradouro"
+                                        placeholder="Rua, Av., Travessa ..." required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cpf">numero</label>
+                                    <input type="number" name="numero" class="form-control" id="numero"
+                                        placeholder="Número da sua casa" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cpf">Bairro</label>
+                                    <input type="text" name="bairro" class="form-control" id="bairro"
+                                        placeholder="Seu bairro" required>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="complemento">Complemento(opcional)</label>
+                                    <input type="text" name="complemento" class="form-control" id="complemento"
+                                        placeholder="Casas do fundo, sala, numero apt...">
+                                </div>
+                            </div>
+                        </div><br>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="data_nascimento">Cidade</label>
+                                    <input type="text" name="cidade" class="form-control" id="cidade"
+                                        placeholder="Cidade" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="cpf">Estado</label>
+                                    <input type="text" name="estado" class="form-control" id="estado"
+                                        placeholder="Estado" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="cpf">CEP</label>
+                                    <input type="number" name="cep" class="form-control" id="cep"
+                                        placeholder="00000-000" required>
+                                </div>
+                            </div>
+                        </div><br>
+
+                        <button type="button" onclick="nextStep()" id="next" class="get-started-btn">Próximo</button>
+                    </div>
+
+                    <!-- Etapa 2: Detalhes do Curso -->
+                    <div id="step2" style="display:none;">
+                        <h4>Detalhes do Curso</h4><br>
+
+                        <div class="form-group">
+                            <label for="curso_escolhido">Escolha o Curso</label>
+                            <select name="curso_escolhido" id="curso_escolhido" class="form-control" required>
+                                <option value="">Selecione o Curso</option>
+                                <option value="ballet-infantil">Ballet Infantil</option>
+                                <option value="ballet-infantil">Ballet Infantil</option>
+                                <option value="ballet-infanto-juvenil">Ballet Infato-Juvenil</option>
+                                <option value="ballet-juvenil">Ballet Juvenil</option>
+                                <option value="ballet-adulto">Ballet Adulto</option>
+                                <option value="danca-de-salao">Dança de Salão</option>
+                                <!-- Outros cursos disponíveis -->
+                            </select>
+                        </div><br>
+
+                        <div class="form-group">
+                            <label for="experiencia_danca">Experiência Prévia em Dança</label>
+                            <textarea name="experiencia_danca" id="experiencia_danca" class="form-control" rows="3"
+                                placeholder="Descreva qualquer experiência prévia em dança"></textarea>
+                        </div><br>
+
+                        <div class="form-group">
+                            <label for="objetivos">Objetivos com o Curso</label>
+                            <textarea name="objetivos" id="objetivos" class="form-control" rows="3"
+                                placeholder="Quais são seus objetivos ao se matricular neste curso?"></textarea>
+                        </div><br>
+
+                        <div class="form-group">
+                            <label for="preferencias_aula">Preferências de Horário para Aulas</label>
+                            <input type="text" name="preferencias_aula" id="preferencias_aula" class="form-control"
+                                placeholder="Indique suas preferências de dias e horários para as aulas">
+                        </div><br>
+
+                        <div class="form-group">
+                            <label for="informacoes_medicas">Informações Médicas Importantes</label>
+                            <textarea name="informacoes_medicas" id="informacoes_medicas" class="form-control" rows="2"
+                                placeholder="Informações médicas relevantes (ex: alergias, condições médicas)"></textarea>
+                        </div><br>
+
+                        <div class="row">
+                            <div class="col text-left">
+                                <button type="button" onclick="previousStep()" class="get-started-btn">Anterior</button>
+                            </div>
+                            <div class="col text-left">
+                                <button type="button" onclick="nextStep()" id="next"
+                                    class="get-started-btn">Próximo</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step3" style="display:none;">
+                        <h4>Confirmação da Matrícula</h4><br>
+
+                        <p>Por favor, revise as informações abaixo antes de enviar sua matrícula:</p>
+
+                        <div class="form-group">
+                            <label>Nome Completo:</label>
+                            <p id="confirm_nome_completo"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Curso Escolhido:</label>
+                            <p id="confirm_curso_escolhido"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Data de Nascimento:</label>
+                            <p id="confirm_data_nascimento"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>CPF:</label>
+                            <p id="confirm_cpf"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nome do Responsável:</label>
+                            <p id="confirm_nome_responsavel"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <p id="confirm_email"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Whatsapp:</label>
+                            <p id="confirm_whatsapp"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Gênero:</label>
+                            <p id="confirm_genero"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Endereço:</label>
+                            <p id="confirm_endereco"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Experiência em Dança:</label>
+                            <p id="confirm_experiencia_danca"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Objetivos com o Curso:</label>
+                            <p id="confirm_objetivos"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Preferências de Horário para Aulas:</label>
+                            <p id="confirm_preferencias_aula"></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Informações Médicas:</label>
+                            <p id="confirm_informacoes_medicas"></p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col text-left">
+                                <button type="button" onclick="previousStep()" class="get-started-btn">Anterior</button>
+                            </div>
+                            <div class="col text-right">
+                                <button type="submit" id="submit" class="get-started-btn">Enviar Matrícula</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Etapa 4: Matrícula Concluída -->
+                    <div id="step4" style="display:none;">
+                        <h4>Matrícula Concluída</h4>
+                        <p>Obrigado por se matricular conosco! Em breve, você receberá um contato via WhatsApp ou e-mail
+                            para confirmar a sua matrícula. Aguarde ansiosamente!</p>
+                    </div>
+                </form>
+            </div>
+        </section><!-- End Matrícula Section -->
+    </main><!-- End #main -->
+    <!-- Dentro do <body>, de preferência no início -->
+
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3 class="logo2">Denuize Teixeira</h3>
+                        <p>
+                            Rua das Ortalicis, 20 <br>
+                            Residencial Jd. América,<br>
+                            Canaã dos Carajás - PA, Brasil <br>
+                            68537-000<br>
+                            <strong>WhatsApp:</strong> +55 94 99163 6997<br>
+                            <strong>Email:</strong> denuizet@gmail.com<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Links Úteis</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre Nós</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Cursos</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Termos de Uso</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Política de Privacidade</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Nossos Serviços</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Ballet</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Ballet Baby</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Ballet Infantil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Ballet Juvenil</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Ballet Adulto</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Inscreva-se!</h4>
+                        <p>Fique por dentro de nossas novidades e promoções</p>
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Inscreva-se">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-md-flex py-4">
+
+            <div class="me-md-auto text-center text-md-start">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Denuize Teixeira</span></strong>. Todos os Direitos Reservados
+                </div>
+                <div class="credits">
+                    Criado por <a href="https://danilomorais.netlify.app/">PyTech Solutions</a>
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        let currentStep = 1;
+
+        function nextStep() {
+            if (currentStep === 2) {
+                // Adicione lógica de validação para a segunda etapa se necessário
+                if (!validateStep(currentStep)) {
+                    return;
+                }
+                updateConfirmation();
+                document.getElementById(`step${currentStep}`).style.display = 'none';
+                currentStep++;
+                document.getElementById(`step${currentStep}`).style.display = 'block';
+            } else if (currentStep === 3) {
+                // Adicione lógica de validação para a terceira etapa se necessário
+                if (!validateStep(currentStep)) {
+                    return;
+                }
+                updateConfirmation();
+                document.getElementById(`step${currentStep}`).style.display = 'none';
+                currentStep++;
+                document.getElementById(`step${currentStep}`).style.display = 'block';
+            } else if (currentStep < 3) {
+                // Se for a primeira etapa, ou se houver uma lógica específica para a etapa 2
+                if (validateStep(currentStep)) {
+                    document.getElementById(`step${currentStep}`).style.display = 'none';
+                    currentStep++;
+                    document.getElementById(`step${currentStep}`).style.display = 'block';
+                    updateConfirmation();
+                }
+            } else {
+                // Etapa 4: Matrícula Concluída
+                document.getElementById('step3').style.display = 'none';
+                currentStep++;
+                document.getElementById('step4').style.display = 'block';
+            }
+
+            // Exibir o botão "Próximo" mesmo após a etapa 4
+            if (currentStep <= 4) {
+                document.getElementById('next').style.display = 'block';
+            } else {
+                document.getElementById('next').style.display = 'none';
+            }
+        }
+
+
+        function previousStep() {
+            if (currentStep > 1) {
+                document.getElementById(`step${currentStep}`).style.display = 'none';
+                currentStep--;
+                document.getElementById(`step${currentStep}`).style.display = 'block';
+            }
+        }
+        function validateStep(step) {
+            if (step === 1) {
+                // Validar os campos na primeira etapa (Dados Pessoais)
+                const primeiroNome = document.getElementById('primeiro_nome').value.trim();
+                const sobrenome = document.getElementById('sobrenome').value.trim();
+                const dataNascimento = document.getElementById('data_nascimento').value;
+                const cpf = document.getElementById('cpf').value.trim();
+                const nomeResponsavel = document.getElementById('nome_responsavel').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const whatsapp = document.getElementById('whatsapp').value.trim();
+                const genero = document.getElementById('genero').value;
+
+                if (!primeiroNome || !sobrenome || !dataNascimento || !cpf || !nomeResponsavel || !email || !whatsapp || !genero) {
+                    alert('Por favor, preencha todos os campos obrigatórios.');
+                    return false;
+                }
+
+                // Validar formato de e-mail
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Por favor, insira um endereço de e-mail válido.');
+                    return false;
+                }
+
+                // Validar formato de CPF
+                const cpfRegex = /^\d{11}$/;
+                if (!cpfRegex.test(cpf)) {
+                    alert('Por favor, insira um CPF válido (apenas números).');
+                    return false;
+                }
+
+                return true;
+            } else if (step === 2) {
+                // Adicione lógica de validação para a segunda etapa se necessário
+                const cursoEscolhido = document.getElementById('curso_escolhido').value;
+                const experienciaDanca = document.getElementById('experiencia_danca').value;
+                const objetivos = document.getElementById('objetivos').value;
+                const preferenciasAula = document.getElementById('preferencias_aula').value;
+
+                if (!cursoEscolhido || !experienciaDanca || !objetivos || !preferenciasAula) {
+                    alert('Por favor, preencha todos os campos obrigatórios na segunda etapa.');
+                    return false;
+                }
+
+                return true;
+            }
+
+            return true; // Se não houver etapa específica, retorne true
+        }
+        // Seção de confirmação atualizada (step3)
+        function updateConfirmation() {
+            // Dados Pessoais
+            document.getElementById('confirm_nome_completo').innerText =
+                document.getElementById('primeiro_nome').value + ' ' + document.getElementById('sobrenome').value;
+
+            document.getElementById('confirm_data_nascimento').innerText =
+                document.getElementById('data_nascimento').value;
+
+            document.getElementById('confirm_cpf').innerText =
+                document.getElementById('cpf').value;
+
+            document.getElementById('confirm_nome_responsavel').innerText =
+                document.getElementById('nome_responsavel').value;
+
+            document.getElementById('confirm_email').innerText =
+                document.getElementById('email').value;
+
+            document.getElementById('confirm_whatsapp').innerText =
+                document.getElementById('whatsapp').value;
+
+            document.getElementById('confirm_genero').innerText =
+                document.getElementById('genero').value;
+
+            // Endereço
+            document.getElementById('confirm_endereco').innerText =
+                document.getElementById('logradouro').value + ', ' +
+                document.getElementById('numero').value + ', ' +
+                document.getElementById('bairro').value + ', ' +
+                document.getElementById('complemento').value + ', ' +
+                document.getElementById('cidade').value + ', ' +
+                document.getElementById('estado').value + ', ' +
+                document.getElementById('cep').value;
+
+            // Detalhes do Curso
+            if (currentStep >= 2) {
+                document.getElementById('confirm_curso_escolhido').innerText =
+                    document.getElementById('curso_escolhido').value;
+
+                document.getElementById('confirm_experiencia_danca').innerText =
+                    document.getElementById('experiencia_danca').value;
+
+                document.getElementById('confirm_objetivos').innerText =
+                    document.getElementById('objetivos').value;
+
+                document.getElementById('confirm_preferencias_aula').innerText =
+                    document.getElementById('preferencias_aula').value;
+
+                document.getElementById('confirm_informacoes_medicas').innerText =
+                    document.getElementById('informacoes_medicas').value;
+            }
+            if (currentStep === 3) {
+                // Substitua a linha abaixo para exibir a mensagem no lugar de enviar ao servidor
+                window.alert('Matrícula concluída com sucesso!');
+                document.getElementById('step3').style.display = 'none';
+                currentStep++;
+                document.getElementById('step4').style.display = 'block';
+            }
+        }
+    </script>
+    <!-- No final do arquivo HTML, antes do fechamento da tag </body> -->
+    <script>
+        window.onload = function () {
+            function calcularIdade(dataNasc) {
+                const hoje = new Date();
+                const nascimento = new Date(dataNasc);
+                let idade = hoje.getFullYear() - nascimento.getFullYear();
+                const m = hoje.getMonth() - nascimento.getMonth();
+                if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
+                    idade--;
+                }
+                return idade;
+            }
+
+            // Evento ao mudar a data de nascimento
+            document.getElementById('data_nascimento').addEventListener('change', function () {
+                const idade = calcularIdade(this.value);
+                if (idade >= 18) {
+                    document.getElementById('dados_responsavel').style.display = 'none';
+                } else {
+                    document.getElementById('dados_responsavel').style.display = 'block';
+                }
+            });
+            const urlParams = new URLSearchParams(window.location.search);
+            const cadastroStatus = urlParams.get('cadastro');
+            const erroMsg = urlParams.get('erroMsg');
+            const notificationElement = document.getElementById('notification');
+
+            if (cadastroStatus === 'sucesso') {
+                notificationElement.style.display = 'block';
+                notificationElement.style.backgroundColor = 'green';
+                notificationElement.style.color = 'white';
+                notificationElement.textContent = 'Pré-Matrícula enviada com sucesso! Aguarde o contato da escola!';
+            } else if (cadastroStatus === 'erro') {
+                notificationElement.style.display = 'block';
+                notificationElement.style.backgroundColor = 'red';
+                notificationElement.style.color = 'white';
+                notificationElement.textContent = erroMsg ? decodeURIComponent(erroMsg) : 'Erro ao processar pré-matrícula.';
+            }
+        };
+    </script>
+
+
+</body>
+
+</html>
