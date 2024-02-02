@@ -494,6 +494,18 @@
                 document.getElementById(`step${currentStep}`).style.display = 'block';
             }
         }
+        function validateStep(step) {
+            if (step === 1) {
+                // Validar os campos na primeira etapa (Dados Pessoais)
+
+                return true;
+            } else if (step === 2) {
+                // Adicione lógica de validação para a segunda etapa se necessário
+                return true;
+            }
+
+            return true; // Se não houver etapa específica, retorne true
+        }
         // Seção de confirmação atualizada (step3)
         function updateConfirmation() {
             // Dados Pessoais
