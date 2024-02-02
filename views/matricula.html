@@ -18,17 +18,17 @@
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+  <link href="/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="/assets/css/style.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -497,10 +497,47 @@
         function validateStep(step) {
             if (step === 1) {
                 // Validar os campos na primeira etapa (Dados Pessoais)
+                const primeiroNome = document.getElementById('primeiro_nome').value.trim();
+                const sobrenome = document.getElementById('sobrenome').value.trim();
+                const dataNascimento = document.getElementById('data_nascimento').value;
+                const cpf = document.getElementById('cpf').value.trim();
+                const nomeResponsavel = document.getElementById('nome_responsavel').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const whatsapp = document.getElementById('whatsapp').value.trim();
+                const genero = document.getElementById('genero').value;
+
+                if (!primeiroNome || !sobrenome || !dataNascimento || !cpf || !nomeResponsavel || !email || !whatsapp || !genero) {
+                    alert('Por favor, preencha todos os campos obrigatórios.');
+                    return false;
+                }
+
+                // Validar formato de e-mail
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Por favor, insira um endereço de e-mail válido.');
+                    return false;
+                }
+
+                // Validar formato de CPF
+                const cpfRegex = /^\d{11}$/;
+                if (!cpfRegex.test(cpf)) {
+                    alert('Por favor, insira um CPF válido (apenas números).');
+                    return false;
+                }
 
                 return true;
             } else if (step === 2) {
                 // Adicione lógica de validação para a segunda etapa se necessário
+                const cursoEscolhido = document.getElementById('curso_escolhido').value;
+                const experienciaDanca = document.getElementById('experiencia_danca').value;
+                const objetivos = document.getElementById('objetivos').value;
+                const preferenciasAula = document.getElementById('preferencias_aula').value;
+
+                if (!cursoEscolhido || !experienciaDanca || !objetivos || !preferenciasAula) {
+                    alert('Por favor, preencha todos os campos obrigatórios na segunda etapa.');
+                    return false;
+                }
+
                 return true;
             }
 
@@ -569,26 +606,6 @@
     <!-- No final do arquivo HTML, antes do fechamento da tag </body> -->
     <script>
         window.onload = function () {
-            function calcularIdade(dataNasc) {
-                const hoje = new Date();
-                const nascimento = new Date(dataNasc);
-                let idade = hoje.getFullYear() - nascimento.getFullYear();
-                const m = hoje.getMonth() - nascimento.getMonth();
-                if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
-                    idade--;
-                }
-                return idade;
-            }
-
-            // Evento ao mudar a data de nascimento
-            document.getElementById('data_nascimento').addEventListener('change', function () {
-                const idade = calcularIdade(this.value);
-                if (idade >= 18) {
-                    document.getElementById('dados_responsavel').style.display = 'none';
-                } else {
-                    document.getElementById('dados_responsavel').style.display = 'block';
-                }
-            });
             const urlParams = new URLSearchParams(window.location.search);
             const cadastroStatus = urlParams.get('cadastro');
             const erroMsg = urlParams.get('erroMsg');
