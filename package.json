@@ -8,9 +8,6 @@
     "tsup": "^8.0.1",
     "tsx": "^4.7.0"
   },
-  "scripts": {
-    "deploy": "prisma migrate deploy"
-  },
   "devDependencies": {
     "prisma": "^5.9.0"
   }
