@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { Client } = require('pg');
+const { Pool } = require('pg');
 const path = require('path');
 require('dotenv').config();
 
@@ -11,21 +11,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Configuração do banco de dados
-const client = new Client({
+const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
-        rejectUnauthorized: false // Isso é necessário para algumas configurações de SSL
+        rejectUnauthorized: false
     }
 });
 
-// Conectar ao banco de dados
-client.connect(err => {
-    if (err) {
-        console.error('Erro ao conectar ao banco de dados', err.stack);
-    } else {
-        console.log('Conexão com o banco de dados estabelecida com sucesso.');
+// Exemplo de uso do pool
+async function query(text, params) {
+    const client = await pool.connect();
+    try {
+        const res = await client.query(text, params);
+        return res;
+    } finally {
+        client.release(); // Importante para liberar a conexão de volta para o pool
     }
-});
+}
 
 // Configuração para servir arquivos estáticos na pasta 'public' de MainPage
 app.use(express.static(path.join(__dirname, 'public')));
