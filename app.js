@@ -12,21 +12,18 @@ app.use(bodyParser.json());
 
 // Configuração do banco de dados
 const client = new Client({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT || 5432, // Porta padrão do PostgreSQL é 5432
+    connectionString: process.env.DATABASE_URL,
     ssl: {
-        rejectUnauthorized: false // Isso pode ser necessário dependendo da configuração do seu provedor de banco de dados
+        rejectUnauthorized: false // Isso é necessário para algumas configurações de SSL
     }
 });
 
+// Conectar ao banco de dados
 client.connect(err => {
     if (err) {
         console.error('Erro ao conectar ao banco de dados', err.stack);
     } else {
-        console.log('Conexão com o banco de dados estabelecida');
+        console.log('Conexão com o banco de dados estabelecida com sucesso.');
     }
 });
 
