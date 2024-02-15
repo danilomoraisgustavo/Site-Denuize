@@ -191,5 +191,5 @@ app.post('/processar-matricula', async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
+    console.log(`App rodando na porta ${port}`);
 });
