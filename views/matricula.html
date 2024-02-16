@@ -110,14 +110,14 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="cpf">Seu melhor email</label>
+                                    <label for="email">Seu melhor email</label>
                                     <input type="text" name="email" class="form-control" id="email" placeholder="E-mail"
                                         required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="cpf">Whatsapp</label>
+                                    <label for="whatsapp">Whatsapp</label>
                                     <input type="text" name="whatsapp" class="form-control" id="whatsapp"
                                         placeholder="Seu número whatsapp" required>
                                 </div>
@@ -135,15 +135,15 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="data_nascimento">Nome do Responsavel</label>
-                                        <input type="text" name="nome_responsavel" class="form-control"
-                                            id="nome_responsavel" placeholder="Se maior de idade, use seus dados"
+                                        <label for="nomeResponsavel">Nome do Responsavel</label>
+                                        <input type="text" name="nomeResponsavel" class="form-control"
+                                            id="nomeResponsavel" placeholder="Se maior de idade, use seus dados"
                                             required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="cpf">CPF</label>
+                                        <label for="cpfResponsavel">CPF</label>
                                         <input type="text" name="cpfResponsavel" class="form-control"
                                             id="cpfResponsavel" placeholder="CPF" required>
                                     </div>
@@ -152,15 +152,15 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="cpf">Seu melhor email</label>
+                                        <label for="emailResponsavel">Seu melhor email</label>
                                         <input type="text" name="emailResponsavel" class="form-control"
                                             id="emailResponsavel" placeholder="E-mail" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="cpf">Whatsapp</label>
-                                        <input type="text" name="whatsapp" class="form-control" id="whatsapp"
+                                        <label for="whatsappResponsavel">Whatsapp</label>
+                                        <input type="text" name="whatsappResponsavel" class="form-control" id="whatsappResponsavel"
                                             placeholder="Seu número whatsapp" required>
                                     </div>
                                 </div>
@@ -171,21 +171,21 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="data_nascimento">Logradouro</label>
+                                    <label for="logradouro">Logradouro</label>
                                     <input type="text" name="logradouro" class="form-control" id="logradouro"
                                         placeholder="Rua, Av., Travessa ..." required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="cpf">Número</label>
+                                    <label for="numero">Número</label>
                                     <input type="number" name="numero" class="form-control" id="numero"
                                         placeholder="Número da sua casa" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="cpf">Bairro</label>
+                                    <label for="bairro">Bairro</label>
                                     <input type="text" name="bairro" class="form-control" id="bairro"
                                         placeholder="Seu bairro" required>
                                 </div>
@@ -201,21 +201,21 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="data_nascimento">Cidade</label>
+                                    <label for="cidade">Cidade</label>
                                     <input type="text" name="cidade" class="form-control" id="cidade"
                                         placeholder="Cidade" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="cpf">Estado</label>
+                                    <label for="estado">Estado</label>
                                     <input type="text" name="estado" class="form-control" id="estado"
                                         placeholder="Estado" required>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="cpf">CEP</label>
+                                    <label for="cep">CEP</label>
                                     <input type="number" name="cep" class="form-control" id="cep"
                                         placeholder="00000-000" required>
                                 </div>
@@ -499,7 +499,7 @@
                 const sobrenome = document.getElementById('sobrenome').value.trim();
                 const dataNascimento = document.getElementById('data_nascimento').value;
                 const cpf = document.getElementById('cpf').value.trim();
-                const nomeResponsavel = document.getElementById('nome_responsavel').value.trim();
+                const nomeResponsavel = document.getElementById('nomeResponsavel').value.trim();
                 const email = document.getElementById('email').value.trim();
                 const whatsapp = document.getElementById('whatsapp').value.trim();
                 const genero = document.getElementById('genero').value;
@@ -554,7 +554,7 @@
                 document.getElementById('cpf').value;
 
             document.getElementById('confirm_nome_responsavel').innerText =
-                document.getElementById('nome_responsavel').value;
+                document.getElementById('nomeResponsavel').value;
 
             document.getElementById('confirm_email').innerText =
                 document.getElementById('email').value;

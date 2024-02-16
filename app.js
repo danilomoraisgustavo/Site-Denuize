@@ -64,14 +64,14 @@ function gerarNumeroMatricula() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-async function verificarNumeroMatriculaUnico(client, numeroMatricula) {
-    const resultado = await client.query('SELECT COUNT(*) FROM detalhes_curso WHERE numero_matricula = $1', [numeroMatricula]);
+async function verificarNumeroMatriculaUnico(numeroMatricula) {
+    const resultado = await query('SELECT COUNT(*) FROM detalhes_curso WHERE numero_matricula = $1', [numeroMatricula]);
     return resultado.rows[0].count === '0';
 }
 
-async function verificarCPFEmailUnicos(client, cpf, email) {
-    const resultadoCPF = await client.query('SELECT COUNT(*) FROM dados_pessoais WHERE cpf = $1', [cpf]);
-    const resultadoEmail = await client.query('SELECT COUNT(*) FROM dados_pessoais WHERE email = $1', [email]);
+async function verificarCPFEmailUnicos(cpf, email) {
+    const resultadoCPF = await query('SELECT COUNT(*) FROM dados_pessoais WHERE cpf = $1', [cpf]);
+    const resultadoEmail = await query('SELECT COUNT(*) FROM dados_pessoais WHERE email = $1', [email]);
     return resultadoCPF.rows[0].count === '0' && resultadoEmail.rows[0].count === '0';
 }
 
@@ -97,7 +97,7 @@ app.post('/processar-matricula', async (req, res) => {
         objetivos,
         preferencias_aula,
         informacoes_medicas,
-        nome_responsavel,
+        nomeResponsavel,
         cpfResponsavel,
         emailResponsavel,
         whatsappResponsavel
@@ -105,17 +105,17 @@ app.post('/processar-matricula', async (req, res) => {
 
     try {
         // Verificar se CPF e email já estão cadastrados
-        const cpfEmailUnicos = await verificarCPFEmailUnicos(client, cpf, email);
+        const cpfEmailUnicos = await verificarCPFEmailUnicos(cpf, email);
         if (!cpfEmailUnicos) {
             throw new Error('CPF ou email já cadastrado.');
         }
 
-        // Inserir dados pessoais
+        // Inserir dados pessoais (incluindo dados do responsável)
         const queryDadosPessoais = `
-            INSERT INTO dados_pessoais 
-            (primeiro_nome, sobrenome, data_nascimento, cpf, email, whatsapp, genero, logradouro, numero, bairro, complemento, cidade, estado, cep)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15)
-            RETURNING id;`;
+    INSERT INTO dados_pessoais 
+    (primeiro_nome, sobrenome, data_nascimento, cpf, email, whatsapp, genero, logradouro, numero, bairro, complemento, cidade, estado, cep, nome_responsavel, cpf_responsavel, email_responsavel, whatsapp_responsavel)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
+    RETURNING id;`;
 
         const valuesDadosPessoais = [
             primeiro_nome,
@@ -131,10 +131,16 @@ app.post('/processar-matricula', async (req, res) => {
             complemento,
             cidade,
             estado,
-            cep
+            cep,
+            nomeResponsavel,      // Novo campo adicionado
+            cpfResponsavel,       // Novo campo adicionado
+            emailResponsavel,     // Novo campo adicionado
+            whatsappResponsavel   // Novo campo adicionado
         ];
 
-        const resultDadosPessoais = await client.query(queryDadosPessoais, valuesDadosPessoais);
+
+        // Execute a consulta com os valores atualizados
+        const resultDadosPessoais = await query(queryDadosPessoais, valuesDadosPessoais);
         const idDadosPessoais = resultDadosPessoais.rows[0].id;
 
         // Gerar número de matrícula único
@@ -142,24 +148,24 @@ app.post('/processar-matricula', async (req, res) => {
         let unico = false;
         while (!unico) {
             numeroMatricula = gerarNumeroMatricula();
-            unico = await verificarNumeroMatriculaUnico(client, numeroMatricula);
+            unico = await verificarNumeroMatriculaUnico(numeroMatricula);
         }
         // Inserir dados do responsável se existirem
-        if (nome_responsavel && cpfResponsavel && emailResponsavel && whatsappResponsavel) {
+        if (nomeResponsavel && cpfResponsavel && emailResponsavel && whatsappResponsavel) {
             const queryDadosResponsavel = `
         INSERT INTO dados_responsavel
-        (id_dados_pessoais, nome, cpf, email, whatsapp)
+        (id_dados_pessoais, nome_responsavel, cpf_responsavel, email_responsavel, whatsapp_responsavel)
         VALUES ($1, $2, $3, $4, $5);`;
 
             const valuesDadosResponsavel = [
                 idDadosPessoais,
-                nome_responsavel,
+                nomeResponsavel,
                 cpfResponsavel,
                 emailResponsavel,
                 whatsappResponsavel
             ];
 
-            await client.query(queryDadosResponsavel, valuesDadosResponsavel);
+            await query(queryDadosResponsavel, valuesDadosResponsavel);
         }
         // Inserir detalhes do curso com número de matrícula
         const queryDetalhesCurso = `
@@ -177,7 +183,7 @@ app.post('/processar-matricula', async (req, res) => {
             numeroMatricula
         ];
 
-        await client.query(queryDetalhesCurso, valuesDetalhesCurso);
+        await query(queryDetalhesCurso, valuesDetalhesCurso);
 
         // Matrícula processada com sucesso
         res.redirect('/matricula.html?cadastro=sucesso');
